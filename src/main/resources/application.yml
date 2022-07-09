@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: decoupling-dependencies
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3310}/${MYSQL_DATABASE:cadastro_entrega}
+    username: ${MYSQL_USER:cadastro_entrega}
+    password: ${MYSQL_PASS:cadastro_entrega}
+  jpa:
+    show-sql: true
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /cadastro-entrega-service
+

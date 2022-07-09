@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql
+    container_name: decloupling-dependencies-mysql
+    ports:
+      - '3310:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: 'cadastro_entrega'
+      MYSQL_USER: cadastro_entrega
+      MYSQL_PASSWORD: cadastro_entrega
+    volumes:
+      - .docker/mysql:/var/lib/mysql
+    restart: on-failure
+    networks:
+      - decoupling-dependencies-network
+networks:
+  decoupling-dependencies-network:
+    driver: bridge
