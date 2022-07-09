@@ -18,4 +18,7 @@ server:
   port: ${PORT:8080}
   servlet:
     context-path: /cadastro-entrega-service
+app:
+  external-api:
+    via-cep: https://viacep.com.br/ws/
 
