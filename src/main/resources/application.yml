@@ -20,5 +20,5 @@ server:
     context-path: /cadastro-entrega-service
 app:
   external-api:
-    via-cep: https://viacep.com.br/ws/
+    via-cep: https://viacep.com.br/ws
 
