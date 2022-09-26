@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
   name = "cadastro-entrega",
   url = "${app.external-api.via-cep}"
 )
-public interface FetchCep {
+public interface FetchCepUsingViaCep {
 
   @GetMapping("/{cep}/json")
-  FetchCepResponse fetch(@PathVariable String cep);
+  CepUsingViaCepResponse fetch(@PathVariable String cep);
 
 
 }

@@ -4,7 +4,7 @@ import br.com.gabriel.decouplingdependencies.domain.dtos.CepResponse;
 import br.com.gabriel.decouplingdependencies.domain.orm.Client;
 import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreateRequest;
 import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreatedResponse;
-import br.com.gabriel.decouplingdependencies.external.FetchCep;
+import br.com.gabriel.decouplingdependencies.external.FetchCepUsingViaCep;
 import br.com.gabriel.decouplingdependencies.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService {
 
-  private final FetchCep fetchCep;
+  private final FetchCepUsingViaCep fetchCepUsingViaCep;
 
   private final ClientRepository clientRepository;
 
   public ClientService(
-    final FetchCep fetchCep,
+    final FetchCepUsingViaCep fetchCepUsingViaCep,
     final ClientRepository clientRepository
   ) {
-    this.fetchCep = fetchCep;
+    this.fetchCepUsingViaCep = fetchCepUsingViaCep;
     this.clientRepository = clientRepository;
   }
 
@@ -42,7 +42,7 @@ public class ClientService {
     final Client client = this.clientRepository.findByUser(user)
       .orElseThrow(() -> new RuntimeException("Usuário " + user + " não encontrado"));
 
-    final var response = this.fetchCep.fetch(client.getCEP());
+    final var response = this.fetchCepUsingViaCep.fetch(client.getCEP());
 
     return CepResponse.newBuilder()
       .withBairro(response.bairro())
