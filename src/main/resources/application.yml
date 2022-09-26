@@ -22,4 +22,4 @@ server:
 app:
   external-api:
     via-cep: https://viacep.com.br/ws
-
+    postmon: https://api.postmon.com.br/v1
