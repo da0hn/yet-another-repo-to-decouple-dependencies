@@ -1,8 +1,8 @@
 package br.com.gabriel.decouplingdependencies.controllers;
 
-import br.com.gabriel.decouplingdependencies.entity.CepResponse;
-import br.com.gabriel.decouplingdependencies.entity.ClientCreateRequest;
-import br.com.gabriel.decouplingdependencies.entity.ClientCreatedResponse;
+import br.com.gabriel.decouplingdependencies.domain.dtos.CepResponse;
+import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreateRequest;
+import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreatedResponse;
 import br.com.gabriel.decouplingdependencies.services.ClientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

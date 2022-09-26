@@ -1,6 +1,6 @@
 package br.com.gabriel.decouplingdependencies.repository;
 
-import br.com.gabriel.decouplingdependencies.entity.Client;
+import br.com.gabriel.decouplingdependencies.domain.orm.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

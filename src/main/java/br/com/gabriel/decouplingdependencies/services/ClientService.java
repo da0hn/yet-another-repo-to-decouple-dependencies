@@ -1,9 +1,9 @@
 package br.com.gabriel.decouplingdependencies.services;
 
-import br.com.gabriel.decouplingdependencies.entity.CepResponse;
-import br.com.gabriel.decouplingdependencies.entity.Client;
-import br.com.gabriel.decouplingdependencies.entity.ClientCreateRequest;
-import br.com.gabriel.decouplingdependencies.entity.ClientCreatedResponse;
+import br.com.gabriel.decouplingdependencies.domain.dtos.CepResponse;
+import br.com.gabriel.decouplingdependencies.domain.orm.Client;
+import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreateRequest;
+import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreatedResponse;
 import br.com.gabriel.decouplingdependencies.external.FetchCep;
 import br.com.gabriel.decouplingdependencies.repository.ClientRepository;
 import org.springframework.stereotype.Service;
