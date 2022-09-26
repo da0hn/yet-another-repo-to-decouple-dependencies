@@ -1,15 +1,21 @@
 package br.com.gabriel.decouplingdependencies.domain.dtos;
 
+import br.com.gabriel.decouplingdependencies.external.FetchCepResponse;
+
 public record CepResponse(
   String logradouro,
   String bairro,
   String localidade,
-  String uf,
-  boolean realizaEntrega
-) {
+  String uf
+) implements FetchCepResponse {
+
 
   public static Builder newBuilder() {
     return new Builder();
+  }
+
+  public boolean realizaEntrega() {
+    return "SP".equalsIgnoreCase(this.localidade) || "RJ".equalsIgnoreCase(this.localidade);
   }
 
   public static final class Builder {
@@ -21,8 +27,6 @@ public record CepResponse(
     private String localidade;
 
     private String uf;
-
-    private boolean realizaEntrega;
 
     private Builder() {
     }
@@ -47,18 +51,13 @@ public record CepResponse(
       return this;
     }
 
-    public Builder withRealizaEntrega(final boolean val) {
-      this.realizaEntrega = val;
-      return this;
-    }
 
     public CepResponse build() {
       return new CepResponse(
         this.logradouro,
         this.bairro,
         this.localidade,
-        this.uf,
-        this.realizaEntrega
+        this.uf
       );
     }
 

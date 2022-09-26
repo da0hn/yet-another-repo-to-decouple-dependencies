@@ -1,4 +1,4 @@
-package br.com.gabriel.decouplingdependencies.external;
+package br.com.gabriel.decouplingdependencies.external.impl.viacep;
 
 public record CepUsingViaCepResponse(
   String logradouro,

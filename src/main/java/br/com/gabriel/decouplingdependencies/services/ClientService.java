@@ -1,26 +1,27 @@
 package br.com.gabriel.decouplingdependencies.services;
 
 import br.com.gabriel.decouplingdependencies.domain.dtos.CepResponse;
-import br.com.gabriel.decouplingdependencies.domain.orm.Client;
 import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreateRequest;
 import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreatedResponse;
-import br.com.gabriel.decouplingdependencies.external.FetchCepUsingViaCep;
+import br.com.gabriel.decouplingdependencies.domain.orm.Client;
+import br.com.gabriel.decouplingdependencies.external.FetchCep;
 import br.com.gabriel.decouplingdependencies.repository.ClientRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class ClientService {
 
-  private final FetchCepUsingViaCep fetchCepUsingViaCep;
+  private final FetchCep fetchCep;
 
   private final ClientRepository clientRepository;
 
   public ClientService(
-    final FetchCepUsingViaCep fetchCepUsingViaCep,
+    @Qualifier("postmonFetchCepAdapter") final FetchCep fetchCep,
     final ClientRepository clientRepository
   ) {
-    this.fetchCepUsingViaCep = fetchCepUsingViaCep;
+    this.fetchCep = fetchCep;
     this.clientRepository = clientRepository;
   }
 
@@ -41,16 +42,7 @@ public class ClientService {
   public CepResponse validation(final String user) {
     final Client client = this.clientRepository.findByUser(user)
       .orElseThrow(() -> new RuntimeException("Usuário " + user + " não encontrado"));
-
-    final var response = this.fetchCepUsingViaCep.fetch(client.getCEP());
-
-    return CepResponse.newBuilder()
-      .withBairro(response.bairro())
-      .withLogradouro(response.logradouro())
-      .withLocalidade(response.localidade())
-      .withUf(response.uf())
-      .withRealizaEntrega(response.uf().equalsIgnoreCase("SP") || response.uf().equalsIgnoreCase("RJ"))
-      .build();
+    return (CepResponse) this.fetchCep.fetch(client.getCEP());
   }
 
 }
