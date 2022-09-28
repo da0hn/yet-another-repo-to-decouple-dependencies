@@ -4,9 +4,9 @@ import br.com.gabriel.decouplingdependencies.domain.dtos.CepResponse;
 import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreateRequest;
 import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreatedResponse;
 import br.com.gabriel.decouplingdependencies.domain.orm.Client;
+import br.com.gabriel.decouplingdependencies.external.CepProvider;
 import br.com.gabriel.decouplingdependencies.external.FetchCep;
 import br.com.gabriel.decouplingdependencies.repository.ClientRepository;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 
@@ -18,7 +18,7 @@ public class ClientService {
   private final ClientRepository clientRepository;
 
   public ClientService(
-    @Qualifier("postmonFetchCepAdapter") final FetchCep fetchCep,
+    @CepProvider("Postmon") final FetchCep fetchCep,
     final ClientRepository clientRepository
   ) {
     this.fetchCep = fetchCep;
