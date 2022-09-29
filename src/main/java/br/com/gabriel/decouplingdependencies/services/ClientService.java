@@ -18,7 +18,7 @@ public class ClientService {
   private final ClientRepository clientRepository;
 
   public ClientService(
-    @CepProvider("Postmon") final FetchCep fetchCep,
+    @CepProvider("postmon") final FetchCep fetchCep,
     final ClientRepository clientRepository
   ) {
     this.fetchCep = fetchCep;

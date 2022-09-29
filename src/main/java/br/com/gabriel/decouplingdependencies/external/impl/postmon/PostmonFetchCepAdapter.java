@@ -7,7 +7,7 @@ import br.com.gabriel.decouplingdependencies.external.FetchCepResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-@CepProvider("Postmon")
+@CepProvider("postmon")
 public class PostmonFetchCepAdapter implements FetchCep {
 
   private final FetchCepUsingPostmon fetchCepUsingPostmon;

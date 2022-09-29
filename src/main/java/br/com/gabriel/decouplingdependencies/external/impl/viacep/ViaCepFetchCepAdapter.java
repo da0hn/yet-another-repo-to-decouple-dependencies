@@ -7,7 +7,7 @@ import br.com.gabriel.decouplingdependencies.external.FetchCepResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-@CepProvider("ViaCep")
+@CepProvider("viacep")
 public class ViaCepFetchCepAdapter implements FetchCep {
 
   private final FetchCepUsingViaCep fetchCepUsingViaCep;
