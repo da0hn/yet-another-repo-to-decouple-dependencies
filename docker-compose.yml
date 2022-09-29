@@ -1,5 +1,19 @@
 version: '3.8'
 services:
+  mongodb:
+    image: mongo
+    container_name: decoupling-dependencies-mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=cadastro_entrega
+      - MONGO_INITDB_ROOT_PASSWORD=cadastro_entrega
+      - MONGO_INITDB_DATABASE=cadastro_entrega
+    volumes:
+      - .docker/mongo:/data/db
+    networks:
+      - decoupling-dependencies-network
+    ports:
+      - '27017:27017'
+    restart: unless-stopped
   mysql:
     image: mysql:8
     container_name: decloupling-dependencies-mysql
