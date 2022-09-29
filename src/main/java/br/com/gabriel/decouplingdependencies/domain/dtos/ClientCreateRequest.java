@@ -1,6 +1,6 @@
 package br.com.gabriel.decouplingdependencies.domain.dtos;
 
-import br.com.gabriel.decouplingdependencies.domain.orm.Gender;
+import br.com.gabriel.decouplingdependencies.domain.entities.Gender;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;

@@ -3,7 +3,7 @@ package br.com.gabriel.decouplingdependencies.services;
 import br.com.gabriel.decouplingdependencies.domain.dtos.CepResponse;
 import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreateRequest;
 import br.com.gabriel.decouplingdependencies.domain.dtos.ClientCreatedResponse;
-import br.com.gabriel.decouplingdependencies.domain.orm.Client;
+import br.com.gabriel.decouplingdependencies.domain.entities.Client;
 import br.com.gabriel.decouplingdependencies.external.CepProvider;
 import br.com.gabriel.decouplingdependencies.external.FetchCep;
 import br.com.gabriel.decouplingdependencies.repository.ClientRepository;
@@ -19,10 +19,10 @@ public class ClientService {
 
   public ClientService(
     @CepProvider("postmon") final FetchCep fetchCep,
-    final ClientRepository clientRepository
+    final ClientRepository jpaClientRepository
   ) {
     this.fetchCep = fetchCep;
-    this.clientRepository = clientRepository;
+    this.clientRepository = jpaClientRepository;
   }
 
   public ClientCreatedResponse create(final ClientCreateRequest request) {
@@ -34,14 +34,13 @@ public class ClientService {
     client.setCEP(request.CEP());
     client.setBirthDate(request.birthDate());
 
-    this.clientRepository.save(client);
+    this.clientRepository.create(client);
 
     return new ClientCreatedResponse(client.getId(), client.getUser());
   }
 
   public CepResponse validation(final String user) {
-    final Client client = this.clientRepository.findByUser(user)
-      .orElseThrow(() -> new RuntimeException("Usuário " + user + " não encontrado"));
+    final Client client = this.clientRepository.findByUser(user);
     return (CepResponse) this.fetchCep.fetch(client.getCEP());
   }
 

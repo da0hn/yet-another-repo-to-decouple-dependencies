@@ -1,15 +1,11 @@
 package br.com.gabriel.decouplingdependencies.repository;
 
-import br.com.gabriel.decouplingdependencies.domain.orm.Client;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import br.com.gabriel.decouplingdependencies.domain.entities.Client;
 
-import java.util.Optional;
+public interface ClientRepository {
 
+  void create(Client client);
 
-@Repository
-public interface ClientRepository extends JpaRepository<Client, Long> {
-
-  Optional<Client> findByUser(String user);
+  Client findByUser(String user);
 
 }

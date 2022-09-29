@@ -1,4 +1,4 @@
-package br.com.gabriel.decouplingdependencies.domain.orm;
+package br.com.gabriel.decouplingdependencies.domain.entities;
 
 import java.util.Arrays;
 
