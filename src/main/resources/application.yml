@@ -21,6 +21,7 @@ spring:
       host: ${MONGO_HOST:localhost}
       username: ${MONGO_USERNAME:cadastro_entrega}
       password: ${MONGO_PASSWORD:cadastro_entrega}
+      authentication-database: admin
       port: ${MONGO_PORT:27017}
       database: cadastro_entrega
 server:
