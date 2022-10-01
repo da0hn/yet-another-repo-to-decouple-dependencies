@@ -7,6 +7,7 @@ import br.com.gabriel.decouplingdependencies.domain.entities.Client;
 import br.com.gabriel.decouplingdependencies.external.CepProvider;
 import br.com.gabriel.decouplingdependencies.external.FetchCep;
 import br.com.gabriel.decouplingdependencies.repository.ClientRepository;
+import br.com.gabriel.decouplingdependencies.repository.RepositoryProvider;
 import org.springframework.stereotype.Service;
 
 
@@ -19,10 +20,10 @@ public class ClientService {
 
   public ClientService(
     @CepProvider("postmon") final FetchCep fetchCep,
-    final ClientRepository jpaClientRepository
+    @RepositoryProvider("mysql") final ClientRepository clientRepository
   ) {
     this.fetchCep = fetchCep;
-    this.clientRepository = jpaClientRepository;
+    this.clientRepository = clientRepository;
   }
 
   public ClientCreatedResponse create(final ClientCreateRequest request) {
