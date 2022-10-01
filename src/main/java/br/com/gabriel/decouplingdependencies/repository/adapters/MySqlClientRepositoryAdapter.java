@@ -2,29 +2,30 @@ package br.com.gabriel.decouplingdependencies.repository.adapters;
 
 import br.com.gabriel.decouplingdependencies.domain.entities.Client;
 import br.com.gabriel.decouplingdependencies.repository.ClientRepository;
-import br.com.gabriel.decouplingdependencies.repository.mysql.MysqlClientRepository;
+import br.com.gabriel.decouplingdependencies.repository.mysql.MySqlClientEntity;
+import br.com.gabriel.decouplingdependencies.repository.mysql.MySqlClientRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MysqlClientRepositoryAdapter implements ClientRepository {
+public class MySqlClientRepositoryAdapter implements ClientRepository {
 
-  private final MysqlClientRepository repository;
+  private final MySqlClientRepository repository;
 
-  public MysqlClientRepositoryAdapter(final MysqlClientRepository repository) {
+  public MySqlClientRepositoryAdapter(final MySqlClientRepository repository) {
     this.repository = repository;
   }
 
 
   @Override
   public void create(final Client client) {
-    final MysqlClientEntity entity = MysqlClientEntity.toEntity(client);
+    final MySqlClientEntity entity = MySqlClientEntity.toEntity(client);
     this.repository.save(entity);
   }
 
   @Override
   public Client findByUser(final String user) {
     return this.repository.findByUser(user)
-      .map(MysqlClientEntity::toDomain)
+      .map(MySqlClientEntity::toDomain)
       .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
   }
 

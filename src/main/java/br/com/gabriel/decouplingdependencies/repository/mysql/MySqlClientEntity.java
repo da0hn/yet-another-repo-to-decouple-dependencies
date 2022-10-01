@@ -1,4 +1,4 @@
-package br.com.gabriel.decouplingdependencies.repository.adapters;
+package br.com.gabriel.decouplingdependencies.repository.mysql;
 
 
 import br.com.gabriel.decouplingdependencies.domain.entities.Client;
@@ -25,7 +25,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "clients")
-public class MysqlClientEntity {
+public class MySqlClientEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +47,8 @@ public class MysqlClientEntity {
   private LocalDate birthDate;
 
 
-  public static MysqlClientEntity toEntity(final Client client) {
-    final var instance = new MysqlClientEntity();
+  public static MySqlClientEntity toEntity(final Client client) {
+    final var instance = new MySqlClientEntity();
     instance.setName(client.getName());
     instance.setGender(client.getGender());
     instance.setUser(client.getUser());
