@@ -37,7 +37,7 @@ public class ClientService {
 
     this.clientRepository.create(client);
 
-    return new ClientCreatedResponse(client.getId(), client.getUser());
+    return new ClientCreatedResponse<>(client.getId(), client.getUser());
   }
 
   public CepResponse validation(final String user) {
