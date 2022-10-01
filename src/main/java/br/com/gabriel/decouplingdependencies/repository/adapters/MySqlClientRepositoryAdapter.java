@@ -4,6 +4,8 @@ import br.com.gabriel.decouplingdependencies.commons.annotations.Adapter;
 import br.com.gabriel.decouplingdependencies.domain.entities.Client;
 import br.com.gabriel.decouplingdependencies.repository.ClientRepository;
 import br.com.gabriel.decouplingdependencies.repository.RepositoryProvider;
+import br.com.gabriel.decouplingdependencies.repository.commons.Identity;
+import br.com.gabriel.decouplingdependencies.repository.commons.MySqlIdentity;
 import br.com.gabriel.decouplingdependencies.repository.mysql.MySqlClientEntity;
 import br.com.gabriel.decouplingdependencies.repository.mysql.MySqlClientRepository;
 
@@ -19,9 +21,10 @@ public class MySqlClientRepositoryAdapter implements ClientRepository {
 
 
   @Override
-  public void create(final Client client) {
+  public Identity<?> create(final Client client) {
     final MySqlClientEntity entity = MySqlClientEntity.toEntity(client);
     this.repository.save(entity);
+    return MySqlIdentity.of(entity.getId());
   }
 
   @Override

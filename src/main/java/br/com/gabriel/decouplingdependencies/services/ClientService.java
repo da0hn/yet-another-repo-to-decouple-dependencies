@@ -20,7 +20,7 @@ public class ClientService {
 
   public ClientService(
     @CepProvider("postmon") final FetchCep fetchCep,
-    @RepositoryProvider("mysql") final ClientRepository clientRepository
+    @RepositoryProvider("mongo") final ClientRepository clientRepository
   ) {
     this.fetchCep = fetchCep;
     this.clientRepository = clientRepository;
@@ -35,9 +35,9 @@ public class ClientService {
     client.setCEP(request.CEP());
     client.setBirthDate(request.birthDate());
 
-    this.clientRepository.create(client);
+    final var newId = this.clientRepository.create(client);
 
-    return new ClientCreatedResponse(client.getId(), client.getUser());
+    return new ClientCreatedResponse(newId, client.getUser());
   }
 
   public CepResponse validation(final String user) {

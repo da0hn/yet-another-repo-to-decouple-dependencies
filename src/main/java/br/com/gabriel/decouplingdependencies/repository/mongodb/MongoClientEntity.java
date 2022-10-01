@@ -1,6 +1,8 @@
 package br.com.gabriel.decouplingdependencies.repository.mongodb;
 
+import br.com.gabriel.decouplingdependencies.domain.entities.Client;
 import br.com.gabriel.decouplingdependencies.domain.entities.Gender;
+import br.com.gabriel.decouplingdependencies.repository.commons.MongoIdentity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,5 +38,29 @@ public class MongoClientEntity {
 
   @Field(name = "birth_date")
   private LocalDate birthDate;
+
+  public static MongoClientEntity toEntity(final Client client) {
+    final var instance = new MongoClientEntity();
+    instance.setName(client.getName());
+    instance.setGender(client.getGender());
+    instance.setUser(client.getUser());
+    instance.setPassword(client.getPassword());
+    instance.setCEP(client.getCEP());
+    instance.setBirthDate(client.getBirthDate());
+    return instance;
+  }
+
+  public Client toDomain() {
+    return new Client(
+      MongoIdentity.of(this.id),
+      this.name,
+      this.gender,
+      this.user,
+      this.password,
+      this.CEP,
+      this.birthDate
+    );
+  }
+
 
 }
