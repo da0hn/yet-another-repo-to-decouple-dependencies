@@ -1,7 +1,7 @@
 package br.com.gabriel.decouplingdependencies.repository.adapters;
 
-import br.com.gabriel.decouplingdependencies.domain.entities.Client;
 import br.com.gabriel.decouplingdependencies.commons.annotations.Adapter;
+import br.com.gabriel.decouplingdependencies.domain.entities.Client;
 import br.com.gabriel.decouplingdependencies.repository.ClientRepository;
 import br.com.gabriel.decouplingdependencies.repository.RepositoryProvider;
 import br.com.gabriel.decouplingdependencies.repository.mysql.MySqlClientEntity;

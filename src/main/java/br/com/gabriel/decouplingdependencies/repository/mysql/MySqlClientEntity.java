@@ -3,6 +3,7 @@ package br.com.gabriel.decouplingdependencies.repository.mysql;
 
 import br.com.gabriel.decouplingdependencies.domain.entities.Client;
 import br.com.gabriel.decouplingdependencies.domain.entities.Gender;
+import br.com.gabriel.decouplingdependencies.repository.commons.MySqlIdentity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -60,6 +61,7 @@ public class MySqlClientEntity {
 
   public Client toDomain() {
     final var instance = new Client();
+    instance.setId(MySqlIdentity.of(this.id));
     instance.setName(this.name);
     instance.setGender(this.gender);
     instance.setUser(this.user);

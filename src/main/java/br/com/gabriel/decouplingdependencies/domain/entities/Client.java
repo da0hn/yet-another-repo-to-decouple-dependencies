@@ -1,6 +1,7 @@
 package br.com.gabriel.decouplingdependencies.domain.entities;
 
 
+import br.com.gabriel.decouplingdependencies.repository.commons.Identity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Client {
 
-  private Long id;
+  private Identity<?> id;
   private String name;
   private Gender gender;
   private String user;
