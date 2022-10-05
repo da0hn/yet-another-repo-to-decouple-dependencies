@@ -20,7 +20,7 @@ public class ClientService {
 
   public ClientService(
     @CepProvider("postmon") final FetchCep fetchCep,
-    @RepositoryProvider("mongo") final ClientRepository clientRepository
+    @RepositoryProvider("mysql") final ClientRepository clientRepository
   ) {
     this.fetchCep = fetchCep;
     this.clientRepository = clientRepository;
